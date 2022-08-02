@@ -3,7 +3,7 @@ import * as IORedis from 'ioredis';
 import { after, times } from 'lodash';
 import { describe, beforeEach, it } from 'mocha';
 import * as sinon from 'sinon';
-import { v4 } from 'uuid';
+import { randomUUID } from 'node:crypto';
 import {
   Queue,
   QueueEvents,
@@ -24,7 +24,7 @@ describe('workers', function () {
   const connection = { host: 'localhost' };
 
   beforeEach(async function () {
-    queueName = `test-${v4()}`;
+    queueName = `test-${randomUUID()}`;
     queue = new Queue(queueName, { connection });
     queueEvents = new QueueEvents(queueName, { connection });
     await queueEvents.waitUntilReady();
@@ -112,7 +112,7 @@ describe('workers', function () {
 
   describe('when sharing connection', () => {
     it('should not fail', async () => {
-      const queueName2 = `test-${v4()}`;
+      const queueName2 = `test-${randomUUID()}`;
 
       const connection = new IORedis({
         host: 'localhost',
@@ -636,7 +636,7 @@ describe('workers', function () {
 
     it('should not close the connection', async () => {
       const connection = new IORedis();
-      const queueName2 = `test-shared-${v4()}`;
+      const queueName2 = `test-shared-${randomUUID()}`;
 
       const queue2 = new Queue(queueName2, {
         defaultJobOptions: { removeOnComplete: true },
@@ -2047,7 +2047,7 @@ describe('workers', function () {
       describe('when creating children at runtime', () => {
         it('should wait children as one step of the parent job', async function () {
           this.timeout(8000);
-          const parentQueueName = `parent-queue-${v4()}`;
+          const parentQueueName = `parent-queue-${randomUUID()}`;
           const parentQueue = new Queue(parentQueueName, { connection });
 
           const queueScheduler = new QueueScheduler(parentQueueName, {
@@ -2729,7 +2729,7 @@ describe('workers', function () {
         const parentToken2 = 'parent-token2';
         const childToken = 'child-token';
 
-        const parentQueueName = `parent-queue-${v4()}`;
+        const parentQueueName = `parent-queue-${randomUUID()}`;
 
         const parentQueue = new Queue(parentQueueName, { connection });
         const parentWorker = new Worker(parentQueueName, null, { connection });
@@ -2849,7 +2849,7 @@ describe('workers', function () {
           const parentToken = 'parent-token';
           const childToken = 'child-token';
 
-          const parentQueueName = `parent-queue-${v4()}`;
+          const parentQueueName = `parent-queue-${randomUUID()}`;
 
           const parentQueue = new Queue(parentQueueName, { connection });
           const parentWorker = new Worker(parentQueueName, null, {
@@ -2927,7 +2927,7 @@ describe('workers', function () {
       const value = { bar: 'something' };
       const parentToken = 'parent-token';
 
-      const parentQueueName = `parent-queue-${v4()}`;
+      const parentQueueName = `parent-queue-${randomUUID()}`;
 
       const parentQueue = new Queue(parentQueueName, { connection });
       const parentWorker = new Worker(parentQueueName, null, { connection });
