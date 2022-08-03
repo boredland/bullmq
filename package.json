@@ -40,7 +40,7 @@
     "eslint:fix": "./node_modules/.bin/eslint . --ignore-path ./.eslintignore --fix",
     "lint": "./node_modules/.bin/eslint . --ignore-path ./.eslintignore",
     "lint:staged": "lint-staged",
-    "prepare": "yarn build",
+    "prepublishOnly": "yarn build",
     "prettier": "prettier --config package.json src/**/*.ts",
     "pretty:quick": "pretty-quick --ignore-path ./.eslintignore --staged",
     "semantic-release": "semantic-release",
