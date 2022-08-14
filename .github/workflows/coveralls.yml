@@ -1,0 +1,53 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests and submit coverage to coveralls
+# Since submitting the coverage needs the COVERALLS_REPO_TOKEN secret, this action runs in a dedicated pipeline
+
+name: Submit Test Coverage to Coveralls
+
+on:
+  workflow_run:
+    workflows: [Node.js Tests]
+    types:
+      - completed
+
+concurrency:
+  group: coverage-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  submit-coverage:
+    runs-on: ubuntu-latest
+
+    name: coverage for node@lts, redis@7
+    env:
+      node-version: lts/*
+      COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+
+    if: >
+      ${{ github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      # checking the repo out, so coveralls can detect the repo name
+      # - name: Checkout repository
+      #   uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+      # download the artifact from the triggering workflow
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          run_id: ${{ github.event.workflow_run.id }}
+          name: coverage
+      # display if we downloaded correctly
+      - name: Display structure of downloaded files
+        run: ls -R
+      - name: Setup Node.js
+        uses: actions/setup-node@2fddd8803e2f5c9604345a0b591c3020ee971a93 # tag=v3
+        with:
+          node-version: ${{ env.node-version }}
+          cache: 'npm'
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          git-branch: ${{ github.event.workflow_run.head_branch }}
+          git-commit: ${{ github.event.workflow_run.head.sha }}
+          path-to-lcov: ./lcov.info
