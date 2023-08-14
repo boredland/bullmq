@@ -2037,11 +2037,11 @@ create-require@^1.1.0:
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
 
 cron-parser@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/cron-parser/-/cron-parser-4.6.0.tgz#404c3fdbff10ae80eef6b709555d577ef2fd2e0d"
-  integrity sha512-guZNLMGUgg6z4+eGhmHGw7ft+v6OQeuHzd1gcLxCo9Yg/qoxmG3nindp2/uwGCLizEisf2H0ptqeVXeoCpP6FA==
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/cron-parser/-/cron-parser-4.9.0.tgz#0340694af3e46a0894978c6f52a6dbb5c0f11ad5"
+  integrity sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==
   dependencies:
-    luxon "^3.0.1"
+    luxon "^3.2.1"
 
 cross-spawn@^6.0.5:
   version "6.0.5"
@@ -4249,10 +4249,10 @@ lunr@^2.3.9:
   resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.3.9.tgz#18b123142832337dd6e964df1a5a7707b25d35e1"
   integrity sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==
 
-luxon@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.0.1.tgz#6901111d10ad06fd267ad4e4128a84bef8a77299"
-  integrity sha512-hF3kv0e5gwHQZKz4wtm4c+inDtyc7elkanAsBq+fundaCdUBNJB1dHEGUZIM6SfSBUlbVFduPwEtNjFK8wLtcw==
+luxon@^3.2.1:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.4.0.tgz#17cb754efecbf76994f05b2a3f1f91fad7ddfde7"
+  integrity sha512-7eDo4Pt7aGhoCheGFIuq4Xa2fJm4ZpmldpGhjTYBNUYNCN6TIEP6v7chwwwt3KRp7YR+rghbfvjyo3V5y9hgBw==
 
 make-dir@^3.0.0, make-dir@^3.0.2:
   version "3.1.0"
